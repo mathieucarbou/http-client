@@ -22,13 +22,13 @@
     <parent>
         <groupId>com.mycila</groupId>
         <artifactId>mycila-pom</artifactId>
-        <version>4</version>
+        <version>5</version>
         <relativePath>../pom</relativePath>
     </parent>
 
     <groupId>com.mycila</groupId>
     <artifactId>mycila-http-client</artifactId>
-    <version>1.1.b1-SNAPSHOT</version>
+    <version>1.0.b2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>mycila-http-client</name>
