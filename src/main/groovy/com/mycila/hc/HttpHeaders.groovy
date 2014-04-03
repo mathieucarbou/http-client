@@ -15,7 +15,7 @@
  */
 package com.mycila.hc
 
-import com.mycila.hc.util.CaseInsensitiveMultiMap
+import com.mycila.hc.util.MultiMap
 
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
@@ -28,7 +28,7 @@ import java.text.DateFormat
 class HttpHeaders {
 
     @Delegate
-    private final CaseInsensitiveMultiMap<String> headers = new CaseInsensitiveMultiMap<>()
+    private final MultiMap<String> headers = new MultiMap<>(true)
 
     boolean isChunked() {
         'chunked'.equalsIgnoreCase(getFirst(HttpHeader.TRANSFER_ENCODING))

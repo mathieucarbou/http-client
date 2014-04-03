@@ -24,7 +24,7 @@ import com.mycila.hc.util.MultiMap
 class HttpQueryParams {
 
     @Delegate
-    private final MultiMap<String, Object> params = new MultiMap<>()
+    private final MultiMap<Object> params = new MultiMap<>()
 
     String getQueryString() {
         params.collect{ Map.Entry<String, List<Object>> p ->

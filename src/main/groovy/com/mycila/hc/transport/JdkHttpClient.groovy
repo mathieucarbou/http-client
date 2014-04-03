@@ -21,10 +21,10 @@ import com.mycila.hc.io.DeferredContentProvider
 import com.mycila.hc.io.GZIPContentDecoder
 import com.mycila.hc.io.NoContentDecoder
 
-import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLSession
+import javax.net.ssl.*
 import java.nio.ByteBuffer
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -64,10 +64,8 @@ class JdkHttpClient extends HttpClient {
             // ssl verifier
             if (request.secured && !config.sslVerification) {
                 HttpsURLConnection httpsCon = (HttpsURLConnection) connection
-                httpsCon.hostnameVerifier = new HostnameVerifier() {
-                    @Override
-                    boolean verify(String s, SSLSession sslSession) { true }
-                }
+                httpsCon.SSLSocketFactory = NoSSL.INSTANCE.factory
+                httpsCon.hostnameVerifier = NoSSL.INSTANCE.hostVerifier
             }
 
             Log.trace('[%s] JdkHttpClient Connecting...', null, request.url)
@@ -193,6 +191,40 @@ class JdkHttpClient extends HttpClient {
             deferredContentProvider?.close()
             request.listeners.remove(deferredContentProvider)
             connection.disconnect()
+        }
+    }
+
+    static class NoSSL {
+
+        static NoSSL INSTANCE = new NoSSL()
+
+        SSLSocketFactory factory
+
+        HostnameVerifier hostVerifier = new HostnameVerifier() {
+            @Override
+            boolean verify(String s, SSLSession sslSession) {
+                return true
+            }
+        }
+
+        NoSSL() {
+            X509TrustManager trustAllCerts = new X509TrustManager() {
+                @Override
+                void checkClientTrusted(final X509Certificate[] chain, final String authType) {
+                }
+
+                @Override
+                void checkServerTrusted(final X509Certificate[] chain, final String authType) {
+                }
+
+                @Override
+                X509Certificate[] getAcceptedIssuers() {
+                    return null
+                }
+            }
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, [trustAllCerts] as TrustManager[], new SecureRandom());
+            factory = sslContext.getSocketFactory()
         }
     }
 
