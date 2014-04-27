@@ -119,7 +119,7 @@ abstract class HttpClientBuilder {
         return this
     }
 
-    HttpClientBuilder enableBackoff(ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(Runtime.runtime.availableProcessors())) {
+    HttpClientBuilder enableBackoff(ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1)) {
         config.backoffScheduler = scheduler
         return this
     }

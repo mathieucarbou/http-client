@@ -28,11 +28,11 @@
 
     <groupId>com.mycila</groupId>
     <artifactId>mycila-http-client</artifactId>
-    <version>1.0.b3</version>
+    <version>1.0.b4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>mycila-http-client</name>
-    <inceptionYear>2013</inceptionYear>
+    <inceptionYear>2014</inceptionYear>
     <url>http://mycila.github.io/${mycila.github.name}</url>
 
     <properties>

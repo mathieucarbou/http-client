@@ -27,7 +27,7 @@ __Maven dependency__
 
 __Maven sites__
 
- - [5.0.ga](http://mycila.github.io/http-client/reports/5.0.ga/index.html)
+ - [x.y.ga](http://mycila.github.io/http-client/reports/x.y.ga/index.html)
 
 ## Documentation ##
 
