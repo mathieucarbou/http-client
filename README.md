@@ -5,7 +5,7 @@ Async HTTP Client API working with several implementations, blocking and non-blo
 __Project Status:__
 
  - __Build Status:__ [![Build Status](https://travis-ci.org/mycila/http-client.png?branch=master)](https://travis-ci.org/mycila/http-client)
- - __Issues:__ https://github.com/mycila/http-client/issues
+ - __Issues:__ https://github.com/mathieucarbou/http-client/issues
 
 ## Maven Repository ##
 
